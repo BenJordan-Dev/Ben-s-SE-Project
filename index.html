@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben's Solution Engineering project</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #0a0a0f;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at top, #1a0533 0%, transparent 60%),
+                radial-gradient(ellipse at bottom, #0d1f4a 0%, transparent 60%),
+                #0a0a0f;
+            border-bottom: 2px solid #7b2ff7;
+            padding: 40px;
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px #7b2ff7, 0 0 40px #7b2ff7, 0 0 80px #7b2ff7;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: #a78bfa;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .top10 {
+            padding: 100px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px #7b2ff7;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #a78bfa;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .game-list {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .game-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .game-card.reverse { direction: rtl; }
+        .game-card.reverse > * { direction: ltr; }
+
+        .game-image {
+            position: relative;
+            background: #1a1a2e;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            background: #1a1a2e;
+            border: none;
+            box-shadow: none;
+        }
+
+        .game-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .rank {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: #7b2ff7;
+        }
+
+        .game-content h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.4rem;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            line-height: 1.8;
+        }
+
+        .meta {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 8px;
+            padding-top: 24px;
+            border-top: 1px solid #2d2d3a;
+        }
+
+        .rating { display: flex; align-items: center; gap: 12px; }
+
+        .label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .score {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: #14b57f;
+        }
+
+        .quote {
+            padding: 16px 20px;
+            border-left: 3px solid #7b2ff7;
+            background: rgba(123, 47, 247, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote p {
+            font-size: 1rem;
+            color: #a78bfa;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .quote span { font-size: 0.9rem; color: #6b7280; }
+
+        /* Tablet */
+        @media (max-width: 900px) {
+            h1 { font-size: 1.6rem; }
+            .top10 { padding: 60px 40px; }
+            .game-card { grid-template-columns: 1fr 1fr; gap: 30px; }
+            .game-image img { height: 220px; }
+            .game-content h3 { font-size: 1rem; }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.1rem; }
+            .hero p { font-size: 0.9rem; letter-spacing: 1px; }
+            .top10 { padding: 40px 20px; }
+            .section-header h2 { font-size: 1.2rem; }
+            .game-list { gap: 50px; }
+            .game-card,
+            .game-card.reverse { grid-template-columns: 1fr; direction: ltr; gap: 20px; }
+            .game-image img { height: 200px; }
+            .game-content h3 { font-size: 0.9rem; }
+            .description { font-size: 1rem; }
+            .score { font-size: 0.75rem; }
+        }
+    </style>
+    <script async type="text/javascript" 
+    src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
+    </script>
+</head>
+<body>
+    <div class="hero">
+        <h1>Ben's Solutions Engineering Project: A gaming newsletter</h1>
+        <p>The (future) most popular gaming newsletter globally</p>
+    </div>
+
+    <section class="top10">
+        <div class="section-header">
+            <h2>My Top 10 Games Ever</h2>
+            <p>The definitive ranking. No arguments.</p>
+        </div>
+
+        <div class="game-list">
+
+            <!-- 1 Elden Ring -->
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring"
+                         onerror="this.src='https://placehold.co/600x280/1a0533/ffffff?text=Elden+Ring'">
+                </div>
+                <div class="game-content">
+                    <span class="rank">#1</span>
+                    <h3>Elden Ring</h3>
+                    <p class="description">A masterpiece of open-world design from FromSoftware. Elden Ring takes everything that made Dark Souls legendary and expands it into a vast, breathtaking world co-created with George R.R. Martin. Every corner hides a secret. Every boss is a war.</p>
+                    <div class="meta">
+                        <div class="rating">
+                            <span class="label">Metacritic</span>
+                            <span class="score">96/100</span>
+                        </div>
+                        <div class="quote">
+                            <p>"An incredible achievement in game design that sets a new standard for the genre."</p>
+                            <span>— IGN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2 GTA V -->
+            <div class="game-card reverse">
+                <div class="game-image">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="GTA V"
+                         onerror="this.src='https://placehold.co/600x280/0d1f4a/ffffff?text=GTA+V'"
+                         style="transform: scale(1.2);">
+                </div>
+                <div class="game-content">
+                    <span class="rank">#2</span>
+                    <h3>GTA V</h3>
+                    <p class="description">Over a decade later and GTA V still holds up as one of the greatest open-world games ever made. Three protagonists, a sprawling Los Santos, and an online mode that became a game in its own right. Rockstar's magnum opus.</p>
+                    <div class="meta">
+                        <div class="rating">
+                            <span class="label">Metacritic</span>
+                            <span class="score">97/100</span>
+                        </div>
+                        <div class="quote">
+                            <p>"A stunning achievement that raises the bar for open-world games once again."</p>
+                            <span>— Eurogamer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Red Dead Redemption 2 -->
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="Red Dead Redemption 2"
+                         onerror="this.src='https://placehold.co/600x280/1a0533/ffffff?text=Red+Dead+2'"
+                         style="object-position: 0% center;">
+                </div>
+                <div class="game-content">
+                    <span class="rank">#3</span>
+                    <h3>Red Dead Redemption 2</h3>
+                    <p class="description">Rockstar's other masterpiece. A slow-burn epic about loyalty, loss and the dying of the American frontier. Arthur Morgan is one of gaming's greatest protagonists. The storytelling here rivals anything in cinema.</p>
+                    <div class="meta">
+                        <div class="rating">
+                            <span class="label">Metacritic</span>
+                            <span class="score">97/100</span>
+                        </div>
+                        <div class="quote">
+                            <p>"A landmark moment for interactive storytelling and open-world design."</p>
+                            <span>— The Guardian</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Dota 2 -->
+            <div class="game-card reverse">
+                <div class="game-image">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg" alt="Dota 2"
+                         onerror="this.src='https://placehold.co/600x280/0d1f4a/ffffff?text=Dota+2'">
+                </div>
+                <div class="game-content">
+                    <span class="rank">#4</span>
+                    <h3>Dota 2</h3>
+                    <p class="description">The most complex and rewarding competitive game ever made. Thousands of hours in and you're still learning. Dota 2 demands everything from you and gives back in equal measure. The International remains esports' greatest spectacle.</p>
+                    <div class="meta">
+                        <div class="rating">
+                            <span class="label">Metacritic</span>
+                            <span class="score">90/100</span>
+                        </div>
+                        <div class="quote">
+                            <p>"The deepest, most rewarding competitive experience in gaming."</p>
+                            <span>— PC Gamer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 Fortnite -->
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="https://i.ibb.co/zdcGzrB/SE-project-image.jpg" alt="Fortnite"
+                         onerror="this.src='https://placehold.co/600x280/1a0533/ffffff?text=Fortnite'">
+                </div>
+                <div class="game-content">
+                    <span class="rank">#5</span>
+                    <h3>Fortnite</h3>
+                    <p class="description">Love it or hate it, Fortnite changed gaming forever. The battle royale that crossed over into mainstream culture, collaborating with everyone from Marvel to Nike. Still evolving, still relevant, still ruthlessly fun.</p>
+                    <div class="meta">
+                        <div class="rating">
+                            <span class="label">Metacritic</span>
+                            <span class="score">81/100</span>
+                        </div>
+                        <div class="quote">
+                            <p>"A cultural phenomenon that redefined what a live service game could be."</p>
+                            <span>— Polygon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 The Last of Us -->
+            <div class="game-card reverse">
+                <div class="game-image">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1888930/header.jpg" alt="The Last of Us"
+                         onerror="this.src='https://placehold.co/600x280/0d1f4a/ffffff?text=The+Last+of+Us'">
+                </div>
+                <div class="game-content">
+                    <span class="rank">#6</span>
+                    <h3>The Last of Us</h3>
+                    <p class="description">Naughty Dog's post-apocalyptic masterpiece redefined narrative gaming. The relationship between Joel and Ellie is one of the most emotionally powerful in all of fiction. The HBO adaptation proves just how cinematic this game always was.</p>
+                    <div class="meta">
+                        <div class="rating">
+                            <span class="label">Metacritic</span>
+                            <span class="score">95/100</span>
+                        </div>
+                        <div class="quote">
+                            <p>"A profoundly moving experience that proves games can tell stories like no other medium."</p>
+                            <span>— Edge Magazine</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7 God of War -->
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg" alt="God of War"
+                         onerror="this.src='https://placehold.co/600x280/1a0533/ffffff?text=God+of+War'"
+                         style="object-fit: contain; object-position: center; transform:scale(1.2)">
+                </div>
+                <div class="game-content">
+                    <span class="rank">#7</span>
+                    <h3>God of War</h3>
+                    <p class="description">The reinvention of Kratos is one of gaming's greatest second acts. Trading Greek mythology for Norse, and pure rage for something far more complex — fatherhood. The single-shot camera technique alone is a technical marvel.</p>
+                    <div class="meta">
+                        <div class="rating">
+                            <span class="label">Metacritic</span>
+                            <span class="score">94/100</span>
+                        </div>
+                        <div class="quote">
+                            <p>"A bold reinvention that somehow makes one of gaming's oldest icons feel completely fresh."</p>
+                            <span>— Game Informer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8 Minecraft -->
+            <div class="game-card reverse">
+                <div class="game-image">
+                    <img src="https://i.ibb.co/7J5VDnnV/Se-project-image-2.webp" alt="Minecraft"
+                         onerror="this.src='https://placehold.co/600x280/0d1f4a/ffffff?text=Minecraft'"
+                         style="object-fit: cover; transform: scale(1.1); transform-origin: center;">
+                </div>
+                <div class="game-content">
+                    <span class="rank">#8</span>
+                    <h3>Minecraft</h3>
+                    <p class="description">The best-selling game of all time for a reason. Minecraft is pure creative freedom — a blank canvas that has inspired an entire generation of gamers, developers and creators. Deceptively simple, endlessly deep.</p>
+                    <div class="meta">
+                        <div class="rating">
+                            <span class="label">Metacritic</span>
+                            <span class="score">93/100</span>
+                        </div>
+                        <div class="quote">
+                            <p>"A generational game that has shaped how an entire generation thinks about creativity."</p>
+                            <span>— Kotaku</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9 The Witcher 3 -->
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg" alt="The Witcher 3"
+                         onerror="this.src='https://placehold.co/600x280/1a0533/ffffff?text=The+Witcher+3'"
+                         style="object-position: 70% center;">
+                </div>
+                <div class="game-content">
+                    <span class="rank">#9</span>
+                    <h3>The Witcher 3</h3>
+                    <p class="description">CD Projekt Red's open-world RPG set the gold standard for quest design. Every side quest tells a complete story. The world of the Continent feels genuinely alive. Still the benchmark for western RPGs nearly a decade on.</p>
+                    <div class="meta">
+                        <div class="rating">
+                            <span class="label">Metacritic</span>
+                            <span class="score">92/100</span>
+                        </div>
+                        <div class="quote">
+                            <p>"The greatest RPG ever made, and possibly the greatest open-world game ever created."</p>
+                            <span>— Gamespot</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10 Cyberpunk 2077 -->
+            <div class="game-card reverse">
+                <div class="game-image">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077"
+                         onerror="this.src='https://placehold.co/600x280/0d1f4a/ffffff?text=Cyberpunk+2077'">
+                </div>
+                <div class="game-content">
+                    <span class="rank">#10</span>
+                    <h3>Cyberpunk 2077</h3>
+                    <p class="description">The greatest redemption arc in gaming history. Cyberpunk 2077 launched rough but has emerged as one of the most immersive RPGs ever made. Night City is an unparalleled achievement in world-building. Phantom Liberty sealed its legacy.</p>
+                    <div class="meta">
+                        <div class="rating">
+                            <span class="label">Metacritic</span>
+                            <span class="score">86/100</span>
+                        </div>
+                        <div class="quote">
+                            <p>"Night City is the most realised game world ever created. A triumph of atmosphere and detail."</p>
+                            <span>— VGC</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</body>
+</html>

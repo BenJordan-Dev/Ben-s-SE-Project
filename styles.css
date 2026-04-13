@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0a0a0f;
+    color: #ffffff;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: 
+        radial-gradient(ellipse at top, #1a0533 0%, transparent 60%),
+        radial-gradient(ellipse at bottom, #0d1f4a 0%, transparent 60%),
+        #0a0a0f;
+    border-bottom: 2px solid #7b2ff7;
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 
+        0 0 20px #7b2ff7,
+        0 0 40px #7b2ff7,
+        0 0 80px #7b2ff7;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    color: #a78bfa;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Top 10 Section */
+.top10 {
+    padding: 100px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-header h2 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2rem;
+    color: #ffffff;
+    text-shadow: 0 0 20px #7b2ff7;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: #a78bfa;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.game-list {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.game-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.game-card.reverse {
+    direction: rtl;
+}
+
+.game-card.reverse > * {
+    direction: ltr;
+}
+
+.game-image img {
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid #7b2ff7;
+    box-shadow: 0 0 40px rgba(123, 47, 247, 0.3);
+}
+
+.game-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.rank {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    color: #7b2ff7;
+}
+
+.game-content h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.4rem;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: #d1d5db;
+    line-height: 1.8;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+    padding-top: 24px;
+    border-top: 1px solid #2d2d3a;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.label {
+    font-size: 0.9rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.score {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    color: #14b57f;
+}
+
+.quote {
+    padding: 16px 20px;
+    border-left: 3px solid #7b2ff7;
+    background: rgba(123, 47, 247, 0.05);
+    border-radius: 0 8px 8px 0;
+}
+
+.quote p {
+    font-size: 1rem;
+    color: #a78bfa;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+.quote span {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
