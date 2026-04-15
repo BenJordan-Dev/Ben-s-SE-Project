@@ -168,6 +168,7 @@
             background: #1a1a2e;
             border-radius: 12px;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .game-image img {
@@ -179,7 +180,10 @@
             background: #1a1a2e;
             border: none;
             box-shadow: none;
+            transition: opacity 0.2s;
         }
+
+        .game-image:hover img { opacity: 0.85; }
 
         .game-content {
             display: flex;
@@ -193,12 +197,19 @@
             color: #7b2ff7;
         }
 
-        .game-content h3 {
+        /* Title is now a clickable link */
+        .game-title-link {
             font-family: 'Press Start 2P', cursive;
             font-size: 1.4rem;
             color: #ffffff;
             line-height: 1.6;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+            display: block;
         }
+
+        .game-title-link:hover { color: #a78bfa; }
 
         .description {
             font-size: 1.1rem;
@@ -253,7 +264,7 @@
             .top10 { padding: 60px 40px; }
             .game-card { grid-template-columns: 1fr 1fr; gap: 30px; }
             .game-image img { height: 220px; }
-            .game-content h3 { font-size: 1rem; }
+            .game-title-link { font-size: 1rem; }
             .signup-form { width: 160px; }
         }
 
@@ -267,14 +278,10 @@
             .game-card,
             .game-card.reverse { grid-template-columns: 1fr; direction: ltr; gap: 20px; }
             .game-image img { height: 200px; }
-            .game-content h3 { font-size: 0.9rem; }
+            .game-title-link { font-size: 0.9rem; }
             .description { font-size: 1rem; }
             .score { font-size: 0.75rem; }
-            .signup-form {
-                position: static;
-                width: 100%;
-                margin-top: 24px;
-            }
+            .signup-form { position: static; width: 100%; margin-top: 24px; }
         }
     </style>
     <script async type="text/javascript"
@@ -317,14 +324,14 @@
         <div class="game-list">
 
             <!-- 1 Elden Ring -->
-            <div class="game-card">
+            <div class="game-card" data-game="elden-ring">
                 <div class="game-image">
                     <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring"
                          onerror="this.src='https://placehold.co/600x280/1a0533/ffffff?text=Elden+Ring'">
                 </div>
                 <div class="game-content">
                     <span class="rank">#1</span>
-                    <h3>Elden Ring</h3>
+                    <a class="game-title-link">Elden Ring</a>
                     <p class="description">A masterpiece of open-world design from FromSoftware. Elden Ring takes everything that made Dark Souls legendary and expands it into a vast, breathtaking world co-created with George R.R. Martin. Every corner hides a secret. Every boss is a war.</p>
                     <div class="meta">
                         <div class="rating">
@@ -340,7 +347,7 @@
             </div>
 
             <!-- 2 GTA V -->
-            <div class="game-card reverse">
+            <div class="game-card reverse" data-game="gta-v">
                 <div class="game-image">
                     <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="GTA V"
                          onerror="this.src='https://placehold.co/600x280/0d1f4a/ffffff?text=GTA+V'"
@@ -348,7 +355,7 @@
                 </div>
                 <div class="game-content">
                     <span class="rank">#2</span>
-                    <h3>GTA V</h3>
+                    <a class="game-title-link">GTA V</a>
                     <p class="description">Over a decade later and GTA V still holds up as one of the greatest open-world games ever made. Three protagonists, a sprawling Los Santos, and an online mode that became a game in its own right. Rockstar's magnum opus.</p>
                     <div class="meta">
                         <div class="rating">
@@ -364,7 +371,7 @@
             </div>
 
             <!-- 3 Red Dead Redemption 2 -->
-            <div class="game-card">
+            <div class="game-card" data-game="red-dead-redemption-2">
                 <div class="game-image">
                     <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="Red Dead Redemption 2"
                          onerror="this.src='https://placehold.co/600x280/1a0533/ffffff?text=Red+Dead+2'"
@@ -372,7 +379,7 @@
                 </div>
                 <div class="game-content">
                     <span class="rank">#3</span>
-                    <h3>Red Dead Redemption 2</h3>
+                    <a class="game-title-link">Red Dead Redemption 2</a>
                     <p class="description">Rockstar's other masterpiece. A slow-burn epic about loyalty, loss and the dying of the American frontier. Arthur Morgan is one of gaming's greatest protagonists. The storytelling here rivals anything in cinema.</p>
                     <div class="meta">
                         <div class="rating">
@@ -388,14 +395,14 @@
             </div>
 
             <!-- 4 Dota 2 -->
-            <div class="game-card reverse">
+            <div class="game-card reverse" data-game="dota-2">
                 <div class="game-image">
                     <img src="https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg" alt="Dota 2"
                          onerror="this.src='https://placehold.co/600x280/0d1f4a/ffffff?text=Dota+2'">
                 </div>
                 <div class="game-content">
                     <span class="rank">#4</span>
-                    <h3>Dota 2</h3>
+                    <a class="game-title-link">Dota 2</a>
                     <p class="description">The most complex and rewarding competitive game ever made. Thousands of hours in and you're still learning. Dota 2 demands everything from you and gives back in equal measure. The International remains esports' greatest spectacle.</p>
                     <div class="meta">
                         <div class="rating">
@@ -411,14 +418,14 @@
             </div>
 
             <!-- 5 Fortnite -->
-            <div class="game-card">
+            <div class="game-card" data-game="fortnite">
                 <div class="game-image">
                     <img src="https://i.ibb.co/zdcGzrB/SE-project-image.jpg" alt="Fortnite"
                          onerror="this.src='https://placehold.co/600x280/1a0533/ffffff?text=Fortnite'">
                 </div>
                 <div class="game-content">
                     <span class="rank">#5</span>
-                    <h3>Fortnite</h3>
+                    <a class="game-title-link">Fortnite</a>
                     <p class="description">Love it or hate it, Fortnite changed gaming forever. The battle royale that crossed over into mainstream culture, collaborating with everyone from Marvel to Nike. Still evolving, still relevant, still ruthlessly fun.</p>
                     <div class="meta">
                         <div class="rating">
@@ -434,14 +441,14 @@
             </div>
 
             <!-- 6 The Last of Us -->
-            <div class="game-card reverse">
+            <div class="game-card reverse" data-game="the-last-of-us">
                 <div class="game-image">
                     <img src="https://cdn.akamai.steamstatic.com/steam/apps/1888930/header.jpg" alt="The Last of Us"
                          onerror="this.src='https://placehold.co/600x280/0d1f4a/ffffff?text=The+Last+of+Us'">
                 </div>
                 <div class="game-content">
                     <span class="rank">#6</span>
-                    <h3>The Last of Us</h3>
+                    <a class="game-title-link">The Last of Us</a>
                     <p class="description">Naughty Dog's post-apocalyptic masterpiece redefined narrative gaming. The relationship between Joel and Ellie is one of the most emotionally powerful in all of fiction. The HBO adaptation proves just how cinematic this game always was.</p>
                     <div class="meta">
                         <div class="rating">
@@ -457,7 +464,7 @@
             </div>
 
             <!-- 7 God of War -->
-            <div class="game-card">
+            <div class="game-card" data-game="god-of-war">
                 <div class="game-image">
                     <img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg" alt="God of War"
                          onerror="this.src='https://placehold.co/600x280/1a0533/ffffff?text=God+of+War'"
@@ -465,7 +472,7 @@
                 </div>
                 <div class="game-content">
                     <span class="rank">#7</span>
-                    <h3>God of War</h3>
+                    <a class="game-title-link">God of War</a>
                     <p class="description">The reinvention of Kratos is one of gaming's greatest second acts. Trading Greek mythology for Norse, and pure rage for something far more complex — fatherhood. The single-shot camera technique alone is a technical marvel.</p>
                     <div class="meta">
                         <div class="rating">
@@ -481,7 +488,7 @@
             </div>
 
             <!-- 8 Minecraft -->
-            <div class="game-card reverse">
+            <div class="game-card reverse" data-game="minecraft">
                 <div class="game-image">
                     <img src="https://i.ibb.co/7J5VDnnV/Se-project-image-2.webp" alt="Minecraft"
                          onerror="this.src='https://placehold.co/600x280/0d1f4a/ffffff?text=Minecraft'"
@@ -489,7 +496,7 @@
                 </div>
                 <div class="game-content">
                     <span class="rank">#8</span>
-                    <h3>Minecraft</h3>
+                    <a class="game-title-link">Minecraft</a>
                     <p class="description">The best-selling game of all time for a reason. Minecraft is pure creative freedom — a blank canvas that has inspired an entire generation of gamers, developers and creators. Deceptively simple, endlessly deep.</p>
                     <div class="meta">
                         <div class="rating">
@@ -505,7 +512,7 @@
             </div>
 
             <!-- 9 The Witcher 3 -->
-            <div class="game-card">
+            <div class="game-card" data-game="the-witcher-3">
                 <div class="game-image">
                     <img src="https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg" alt="The Witcher 3"
                          onerror="this.src='https://placehold.co/600x280/1a0533/ffffff?text=The+Witcher+3'"
@@ -513,7 +520,7 @@
                 </div>
                 <div class="game-content">
                     <span class="rank">#9</span>
-                    <h3>The Witcher 3</h3>
+                    <a class="game-title-link">The Witcher 3</a>
                     <p class="description">CD Projekt Red's open-world RPG set the gold standard for quest design. Every side quest tells a complete story. The world of the Continent feels genuinely alive. Still the benchmark for western RPGs nearly a decade on.</p>
                     <div class="meta">
                         <div class="rating">
@@ -529,14 +536,14 @@
             </div>
 
             <!-- 10 Cyberpunk 2077 -->
-            <div class="game-card reverse">
+            <div class="game-card reverse" data-game="cyberpunk-2077">
                 <div class="game-image">
                     <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077"
                          onerror="this.src='https://placehold.co/600x280/0d1f4a/ffffff?text=Cyberpunk+2077'">
                 </div>
                 <div class="game-content">
                     <span class="rank">#10</span>
-                    <h3>Cyberpunk 2077</h3>
+                    <a class="game-title-link">Cyberpunk 2077</a>
                     <p class="description">The greatest redemption arc in gaming history. Cyberpunk 2077 launched rough but has emerged as one of the most immersive RPGs ever made. Night City is an unparalleled achievement in world-building. Phantom Liberty sealed its legacy.</p>
                     <div class="meta">
                         <div class="rating">
