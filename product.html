@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben's LevelUp</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #0a0a0f;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Nav */
+        .nav {
+            padding: 20px 40px;
+            border-bottom: 1px solid #2d2d3a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav a {
+            color: #a78bfa;
+            text-decoration: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover { color: #ffffff; }
+
+        .nav span {
+            color: #2d2d3a;
+            font-size: 0.8rem;
+        }
+
+        .nav .current {
+            color: #6b7280;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+        }
+
+        /* Product Layout */
+        .product {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* Image */
+        .product-image {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #7b2ff7;
+            box-shadow: 0 0 60px rgba(123, 47, 247, 0.3);
+        }
+
+        .product-image img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Content */
+        .product-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .product-rank {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: #7b2ff7;
+        }
+
+        .product-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.8rem;
+            color: #ffffff;
+            line-height: 1.5;
+            text-shadow: 0 0 20px #7b2ff7;
+        }
+
+        .product-score {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .product-score .label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-score .score {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: #14b57f;
+        }
+
+        .product-description {
+            font-size: 1.15rem;
+            color: #d1d5db;
+            line-height: 1.9;
+            border-top: 1px solid #2d2d3a;
+            padding-top: 24px;
+        }
+
+        /* Price & CTA */
+        .product-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 24px;
+            background: rgba(123, 47, 247, 0.08);
+            border: 1px solid #7b2ff7;
+            border-radius: 12px;
+        }
+
+        .product-price {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        .product-price span {
+            font-size: 0.7rem;
+            color: #6b7280;
+            margin-left: 8px;
+        }
+
+        .btn-add {
+            padding: 16px;
+            background: #7b2ff7;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            text-align: center;
+        }
+
+        .btn-add:hover {
+            background: #6320d4;
+            transform: translateY(-2px);
+        }
+
+        .btn-add.added {
+            background: #14b57f;
+            cursor: default;
+            transform: none;
+        }
+
+        /* Quote */
+        .product-quote {
+            padding: 16px 20px;
+            border-left: 3px solid #7b2ff7;
+            background: rgba(123, 47, 247, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .product-quote p {
+            font-size: 1rem;
+            color: #a78bfa;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .product-quote span { font-size: 0.9rem; color: #6b7280; }
+
+        /* Mobile */
+        @media (max-width: 700px) {
+            .product {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin: 30px auto;
+            }
+            .product-title { font-size: 1.2rem; }
+            .nav { padding: 16px 20px; }
+        }
+    </style>
+    <script async type="text/javascript"
+    src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
+    </script>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="index.html">← Back to Top 10</a>
+        <span>/</span>
+        <span class="current" id="navTitle">Loading...</span>
+    </nav>
+
+    <div class="product">
+        <div class="product-image">
+            <img id="productImg" src="" alt="">
+        </div>
+        <div class="product-content">
+            <span class="product-rank" id="productRank"></span>
+            <h1 class="product-title" id="productTitle">Loading...</h1>
+            <div class="product-score">
+                <span class="label">Metacritic</span>
+                <span class="score" id="productScore"></span>
+            </div>
+            <p class="product-description" id="productDescription"></p>
+            <div class="product-cta">
+                <div class="product-price">£9.99 <span>/ month via Ben's LevelUp</span></div>
+                <button class="btn-add" id="addBtn">+ Add to LevelUp</button>
+            </div>
+            <div class="product-quote">
+                <p id="productQuote"></p>
+                <span id="productSource"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const games = {
+            'elden-ring': {
+                rank: '#1', title: 'Elden Ring', score: '96/100',
+                description: 'A masterpiece of open-world design from FromSoftware. Elden Ring takes everything that made Dark Souls legendary and expands it into a vast, breathtaking world co-created with George R.R. Martin. Every corner hides a secret. Every boss is a war.',
+                image: 'https://cdn.akamai.steamstatic.com/steam/apps/1245620/library_600x900.jpg',
+                quote: '"An incredible achievement in game design that sets a new standard for the genre."',
+                source: '— IGN', externalId: 'BENSLEVUP-001'
+            },
+            'gta-v': {
+                rank: '#2', title: 'GTA V', score: '97/100',
+                description: 'Over a decade later and GTA V still holds up as one of the greatest open-world games ever made. Three protagonists, a sprawling Los Santos, and an online mode that became a game in its own right. Rockstar\'s magnum opus.',
+                image: 'https://cdn.akamai.steamstatic.com/steam/apps/271590/library_600x900.jpg',
+                quote: '"A stunning achievement that raises the bar for open-world games once again."',
+                source: '— Eurogamer', externalId: 'BENSLEVUP-002'
+            },
+            'red-dead-redemption-2': {
+                rank: '#3', title: 'Red Dead Redemption 2', score: '97/100',
+                description: 'Rockstar\'s other masterpiece. A slow-burn epic about loyalty, loss and the dying of the American frontier. Arthur Morgan is one of gaming\'s greatest protagonists. The storytelling here rivals anything in cinema.',
+                image: 'https://cdn.akamai.steamstatic.com/steam/apps/1174180/library_600x900.jpg',
+                quote: '"A landmark moment for interactive storytelling and open-world design."',
+                source: '— The Guardian', externalId: 'BENSLEVUP-003'
+            },
+            'dota-2': {
+                rank: '#4', title: 'Dota 2', score: '90/100',
+                description: 'The most complex and rewarding competitive game ever made. Thousands of hours in and you\'re still learning. Dota 2 demands everything from you and gives back in equal measure. The International remains esports\' greatest spectacle.',
+                image: 'https://cdn.akamai.steamstatic.com/steam/apps/570/library_600x900.jpg',
+                quote: '"The deepest, most rewarding competitive experience in gaming."',
+                source: '— PC Gamer', externalId: 'BENSLEVUP-004'
+            },
+            'fortnite': {
+                rank: '#5', title: 'Fortnite', score: '81/100',
+                description: 'Love it or hate it, Fortnite changed gaming forever. The battle royale that crossed over into mainstream culture, collaborating with everyone from Marvel to Nike. Still evolving, still relevant, still ruthlessly fun.',
+                image: 'https://i.ibb.co/zdcGzrB/SE-project-image.jpg',
+                quote: '"A cultural phenomenon that redefined what a live service game could be."',
+                source: '— Polygon', externalId: 'BENSLEVUP-005'
+            },
+            'the-last-of-us': {
+                rank: '#6', title: 'The Last of Us', score: '95/100',
+                description: 'Naughty Dog\'s post-apocalyptic masterpiece redefined narrative gaming. The relationship between Joel and Ellie is one of the most emotionally powerful in all of fiction. The HBO adaptation proves just how cinematic this game always was.',
+                image: 'https://cdn.akamai.steamstatic.com/steam/apps/1888930/library_600x900.jpg',
+                quote: '"A profoundly moving experience that proves games can tell stories like no other medium."',
+                source: '— Edge Magazine', externalId: 'BENSLEVUP-006'
+            },
+            'god-of-war': {
+                rank: '#7', title: 'God of War', score: '94/100',
+                description: 'The reinvention of Kratos is one of gaming\'s greatest second acts. Trading Greek mythology for Norse, and pure rage for something far more complex — fatherhood. The single-shot camera technique alone is a technical marvel.',
+                image: 'https://cdn.akamai.steamstatic.com/steam/apps/1593500/library_600x900.jpg',
+                quote: '"A bold reinvention that somehow makes one of gaming\'s oldest icons feel completely fresh."',
+                source: '— Game Informer', externalId: 'BENSLEVUP-007'
+            },
+            'minecraft': {
+                rank: '#8', title: 'Minecraft', score: '93/100',
+                description: 'The best-selling game of all time for a reason. Minecraft is pure creative freedom — a blank canvas that has inspired an entire generation of gamers, developers and creators. Deceptively simple, endlessly deep.',
+                image: 'https://i.ibb.co/7J5VDnnV/Se-project-image-2.webp',
+                quote: '"A generational game that has shaped how an entire generation thinks about creativity."',
+                source: '— Kotaku', externalId: 'BENSLEVUP-008'
+            },
+            'the-witcher-3': {
+                rank: '#9', title: 'The Witcher 3', score: '92/100',
+                description: 'CD Projekt Red\'s open-world RPG set the gold standard for quest design. Every side quest tells a complete story. The world of the Continent feels genuinely alive. Still the benchmark for western RPGs nearly a decade on.',
+                image: 'https://cdn.akamai.steamstatic.com/steam/apps/292030/library_600x900.jpg',
+                quote: '"The greatest RPG ever made, and possibly the greatest open-world game ever created."',
+                source: '— Gamespot', externalId: 'BENSLEVUP-009'
+            },
+            'cyberpunk-2077': {
+                rank: '#10', title: 'Cyberpunk 2077', score: '86/100',
+                description: 'The greatest redemption arc in gaming history. Cyberpunk 2077 launched rough but has emerged as one of the most immersive RPGs ever made. Night City is an unparalleled achievement in world-building. Phantom Liberty sealed its legacy.',
+                image: 'https://cdn.akamai.steamstatic.com/steam/apps/1091500/library_600x900.jpg',
+                quote: '"Night City is the most realised game world ever created. A triumph of atmosphere and detail."',
+                source: '— VGC', externalId: 'BENSLEVUP-010'
+            }
+        }
+
+        // Read URL parameter
+        const params = new URLSearchParams(window.location.search)
+        const gameKey = params.get('game')
+        const game = games[gameKey]
+
+        if (game) {
+            // Populate page
+            document.title = game.title + ' — Ben\'s LevelUp'
+            document.getElementById('navTitle').textContent = game.title
+            document.getElementById('productRank').textContent = game.rank
+            document.getElementById('productTitle').textContent = game.title
+            document.getElementById('productScore').textContent = game.score
+            document.getElementById('productDescription').textContent = game.description
+            document.getElementById('productImg').src = game.image
+            document.getElementById('productImg').alt = game.title
+            document.getElementById('productQuote').textContent = game.quote
+            document.getElementById('productSource').textContent = game.source
+
+            // Fire Viewed Product event
+            window.klaviyo = window.klaviyo || []
+            klaviyo.push(['track', 'Viewed Product', {
+                'Game Title': game.title,
+                'Game ID': game.externalId,
+                'Metacritic Score': game.score,
+                'Price': 9.99,
+                'URL': window.location.href
+            }])
+
+            console.log('Tracked: Viewed Product -', game.title)
+
+            // Add to LevelUp button
+            document.getElementById('addBtn').addEventListener('click', () => {
+                klaviyo.push(['track', 'Added to Cart', {
+                    'Game Title': game.title,
+                    'Game ID': game.externalId,
+                    'Price': 9.99,
+                    'URL': window.location.href
+                }])
+
+                console.log('Tracked: Added to Cart -', game.title)
+
+                const btn = document.getElementById('addBtn')
+                btn.textContent = '✓ Added to LevelUp'
+                btn.classList.add('added')
+            })
+        }
+    </script>
+</body>
+</html>
