@@ -28,6 +28,7 @@
                 #0a0a0f;
             border-bottom: 2px solid #7b2ff7;
             padding: 40px;
+            position: relative;
         }
 
         h1 {
@@ -39,13 +40,86 @@
             margin-bottom: 1.5rem;
         }
 
-        .hero p {
+        .hero > p {
             font-size: 1.4rem;
             color: #a78bfa;
             letter-spacing: 3px;
             text-transform: uppercase;
         }
 
+        /* Signup Form */
+        .signup-form {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: rgba(123, 47, 247, 0.1);
+            border: 1px solid #7b2ff7;
+            border-radius: 10px;
+            padding: 16px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .signup-form h4 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.55rem;
+            color: #ffffff;
+            line-height: 1.6;
+            margin-bottom: 2px;
+        }
+
+        .signup-form input,
+        .signup-form select {
+            width: 100%;
+            padding: 7px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #2d2d3a;
+            border-radius: 6px;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .signup-form input::placeholder { color: #6b7280; }
+
+        .signup-form input:focus,
+        .signup-form select:focus {
+            outline: none;
+            border-color: #7b2ff7;
+        }
+
+        .signup-form select option {
+            background: #0a0a0f;
+            color: #ffffff;
+        }
+
+        .signup-form button {
+            width: 100%;
+            padding: 8px;
+            background: #7b2ff7;
+            border: none;
+            border-radius: 6px;
+            color: #ffffff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .signup-form button:hover { background: #6320d4; }
+
+        .signup-form .success-message {
+            display: none;
+            text-align: center;
+            color: #14b57f;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            line-height: 1.8;
+        }
+
+        /* Top 10 */
         .top10 {
             padding: 100px 80px;
             max-width: 1200px;
@@ -180,12 +254,13 @@
             .game-card { grid-template-columns: 1fr 1fr; gap: 30px; }
             .game-image img { height: 220px; }
             .game-content h3 { font-size: 1rem; }
+            .signup-form { width: 160px; }
         }
 
         /* Mobile */
         @media (max-width: 600px) {
             h1 { font-size: 1.1rem; }
-            .hero p { font-size: 0.9rem; letter-spacing: 1px; }
+            .hero > p { font-size: 0.9rem; letter-spacing: 1px; }
             .top10 { padding: 40px 20px; }
             .section-header h2 { font-size: 1.2rem; }
             .game-list { gap: 50px; }
@@ -195,9 +270,14 @@
             .game-content h3 { font-size: 0.9rem; }
             .description { font-size: 1rem; }
             .score { font-size: 0.75rem; }
+            .signup-form {
+                position: static;
+                width: 100%;
+                margin-top: 24px;
+            }
         }
     </style>
-    <script async type="text/javascript" 
+    <script async type="text/javascript"
     src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
     </script>
 </head>
@@ -205,6 +285,27 @@
     <div class="hero">
         <h1>Ben's Solutions Engineering Project: A gaming newsletter</h1>
         <p>The (future) most popular gaming newsletter globally</p>
+
+        <div class="signup-form">
+            <h4>Join Ben's LevelUp</h4>
+            <input type="text" id="firstName" placeholder="First name" />
+            <input type="email" id="email" placeholder="Email address" />
+            <select id="favouriteGame">
+                <option value="" disabled selected>Favourite game...</option>
+                <option value="Elden Ring">Elden Ring</option>
+                <option value="GTA V">GTA V</option>
+                <option value="Red Dead Redemption 2">Red Dead Redemption 2</option>
+                <option value="Dota 2">Dota 2</option>
+                <option value="Fortnite">Fortnite</option>
+                <option value="The Last of Us">The Last of Us</option>
+                <option value="God of War">God of War</option>
+                <option value="Minecraft">Minecraft</option>
+                <option value="The Witcher 3">The Witcher 3</option>
+                <option value="Cyberpunk 2077">Cyberpunk 2077</option>
+            </select>
+            <button id="signupBtn">Subscribe</button>
+            <p class="success-message" id="successMsg">You're in! 🎮<br>Welcome to Ben's LevelUp</p>
+        </div>
     </div>
 
     <section class="top10">
@@ -452,5 +553,6 @@
 
         </div>
     </section>
+    <script src="app.js"></script>
 </body>
 </html>
