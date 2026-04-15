@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => {
+
 // ============================================================
 // Game card click tracking
 // ============================================================
@@ -57,4 +59,6 @@ document.getElementById('signupBtn').addEventListener('click', () => {
 
   document.getElementById('signupBtn').style.display = 'none'
   document.getElementById('successMsg').style.display = 'block'
+})
+
 })
