@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <script async type="text/javascript"
-src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
-</script>
+    <script async type="text/javascript"
+        src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ben's Solution Engineering project</title>
@@ -122,6 +122,164 @@ src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
             line-height: 1.8;
         }
 
+        /* ── GAME SECTION ── */
+        .game-section {
+            padding: 80px 40px;
+            background: #0a0a0f;
+            border-bottom: 2px solid #7b2ff7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .game-section-header {
+            text-align: center;
+        }
+
+        .game-section-header h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.6rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px #7b2ff7;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .game-section-header p {
+            font-size: 1.1rem;
+            color: #a78bfa;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Email gate */
+        .game-gate {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .game-gate input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #7b2ff7;
+            border-radius: 8px;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+        }
+
+        .game-gate input::placeholder { color: #6b7280; }
+        .game-gate input:focus { outline: none; border-color: #a78bfa; }
+
+        .btn-play {
+            padding: 14px 32px;
+            background: #7b2ff7;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-play:hover { background: #6320d4; transform: translateY(-2px); }
+
+        /* Canvas wrapper */
+        .game-wrapper {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .game-hud {
+            display: flex;
+            justify-content: space-between;
+            width: 700px;
+            max-width: 100%;
+        }
+
+        .game-hud span {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: #a78bfa;
+        }
+
+        .game-hud span strong {
+            color: #ffffff;
+        }
+
+        #gameCanvas {
+            border: 2px solid #7b2ff7;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(123,47,247,0.3);
+            background: #0d0d1a;
+            display: block;
+        }
+
+        .game-instructions {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.55rem;
+            color: #6b7280;
+            text-align: center;
+            line-height: 2;
+        }
+
+        /* Game over panel */
+        .game-over-panel {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .game-over-panel h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.4rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px #7b2ff7;
+        }
+
+        .game-over-panel p {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: #a78bfa;
+            line-height: 2;
+        }
+
+        .game-over-panel .final-score {
+            font-size: 1rem;
+            color: #14b57f;
+        }
+
+        .game-over-panel .high-score-msg {
+            font-size: 0.6rem;
+            color: #7b2ff7;
+        }
+
+        .btn-restart {
+            padding: 14px 32px;
+            background: #7b2ff7;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-restart:hover { background: #6320d4; }
+
         /* Top 10 */
         .top10 {
             padding: 100px 80px;
@@ -200,7 +358,6 @@ src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
             color: #7b2ff7;
         }
 
-        /* Title is now a clickable link */
         .game-title-link {
             font-family: 'Press Start 2P', cursive;
             font-size: 1.4rem;
@@ -269,6 +426,7 @@ src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
             .game-image img { height: 220px; }
             .game-title-link { font-size: 1rem; }
             .signup-form { width: 160px; }
+            .game-hud { width: 100%; }
         }
 
         /* Mobile */
@@ -287,9 +445,6 @@ src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
             .signup-form { position: static; width: 100%; margin-top: 24px; }
         }
     </style>
-    <script async type="text/javascript"
-    src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
-    </script>
 </head>
 <body>
     <div class="hero">
@@ -318,6 +473,40 @@ src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
         </div>
     </div>
 
+    <!-- ── GAME SECTION ── -->
+    <section class="game-section" id="gameSection">
+        <div class="game-section-header">
+            <h2>Ben's LevelUp Runner</h2>
+            <p>Jump the obstacles. Beat the high score.</p>
+        </div>
+
+        <!-- Email gate -->
+        <div class="game-gate" id="gameGate">
+            <input type="email" id="gameEmail" placeholder="Enter your email to play..." />
+            <button class="btn-play" id="btnPlay">▶ Play Now</button>
+        </div>
+
+        <!-- Game canvas -->
+        <div class="game-wrapper" id="gameWrapper">
+            <div class="game-hud">
+                <span>Score: <strong id="hudScore">0</strong></span>
+                <span>High Score: <strong id="hudHighScore">0</strong></span>
+            </div>
+            <canvas id="gameCanvas" width="700" height="200"></canvas>
+            <p class="game-instructions">Press SPACE or tap to jump</p>
+        </div>
+
+        <!-- Game over -->
+        <div class="game-over-panel" id="gameOverPanel">
+            <h3>Game Over</h3>
+            <p class="final-score">Score: <strong id="finalScore">0</strong></p>
+            <p class="high-score-msg" id="highScoreMsg"></p>
+            <p style="font-size:0.55rem; color:#6b7280;">Your score has been sent to Klaviyo 🎮</p>
+            <button class="btn-restart" id="btnRestart">↺ Play Again</button>
+        </div>
+    </section>
+
+    <!-- TOP 10 -->
     <section class="top10">
         <div class="section-header">
             <h2>My Top 10 Games Ever</h2>
@@ -480,7 +669,7 @@ src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RMdYrh">
                     <div class="meta">
                         <div class="rating">
                             <span class="label">Metacritic</span>
-                            <span class="score">94/100</span>
+                            <span class="score">97/100</span>
                         </div>
                         <div class="quote">
                             <p>"A bold reinvention that somehow makes one of gaming's oldest icons feel completely fresh."</p>
