@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const W = canvas.width
   const H = canvas.height
   const GROUND = H - 40
-
+  
   let playerEmail = ''
   let score = 0
   let highScore = parseInt(localStorage.getItem('levelup_highscore') || '0')
@@ -222,14 +222,13 @@ if (score > prevHighScore) {
     document.getElementById('gameOverPanel').style.display = 'flex'
 
     // Fire Klaviyo event
-    klaviyo.push(['identify', { '$email': playerEmail }])
     klaviyo.push(['track', 'Game Played', {
-      'Score': score,
-      'High Score': highScore,
-      'IsNewHighScore': isNewHighScore,
-      'Game': 'LevelUp Runner',
-      'Duration (frames)': score
-    }])
+  'Score': score,
+  'High Score': highScore,
+  'IsNewHighScore': isNewHighScore,
+  'Game': 'LevelUp Runner',
+  'Duration (frames)': score
+}])
 
     console.log('Tracked: Game Played — Score:', score)
   }
