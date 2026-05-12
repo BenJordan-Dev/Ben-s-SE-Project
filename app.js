@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     klaviyo.push(['track', 'Game Played', {
       'Score': score,
       'High Score': highScore,
-      'Is New High Score': isNewHighScore,
+      'IsNewHighScore': isNewHighScore,
       'Game': 'LevelUp Runner',
       'Duration (frames)': score
     }])
