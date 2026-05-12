@@ -205,11 +205,13 @@ document.addEventListener('DOMContentLoaded', () => {
     gameRunning = false
 
     // Update high score
-    const isNewHighScore = score > highScore
-    if (isNewHighScore) {
-      highScore = score
-      localStorage.setItem('levelup_highscore', highScore)
-    }
+    const prevHighScore = parseInt(localStorage.getItem('levelup_highscore') || '0')
+const isNewHighScore = score > prevHighScore && prevHighScore > 0
+
+if (score > prevHighScore) {
+  highScore = score
+  localStorage.setItem('levelup_highscore', highScore)
+}
 
     // Show game over panel
     document.getElementById('gameWrapper').style.display = 'none'
